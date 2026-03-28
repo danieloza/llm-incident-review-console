@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LLM Incident Review Console</title>
+  <style>
+    :root { --bg:#081425; --panel:#0e2036; --line:rgba(135,195,255,.16); --text:#edf4ff; --muted:#95b0cf; --accent:#5fd1ff; --danger:#ff6b7a; --warn:#ffb75f; --ok:#67e39b; }
+    * { box-sizing:border-box; }
+    html, body { margin:0; min-height:100%; background:radial-gradient(circle at top left, rgba(95,209,255,.14), transparent 28%), radial-gradient(circle at top right, rgba(255,107,122,.10), transparent 24%), linear-gradient(180deg, #081425 0%, #0b1930 100%); color:var(--text); font-family:"Segoe UI", system-ui, sans-serif; }
+    body { padding:32px; }
+    .shell { max-width:1280px; margin:0 auto; }
+    .hero, .panel { border:1px solid var(--line); background:linear-gradient(180deg, rgba(14,32,54,.96), rgba(11,27,46,.96)); border-radius:28px; box-shadow:0 24px 80px rgba(0,0,0,.28); }
+    .hero { padding:32px; margin-bottom:24px; }
+    .eyebrow { color:var(--accent); text-transform:uppercase; letter-spacing:.18em; font-size:12px; margin-bottom:10px; }
+    h1 { font-size:clamp(42px, 7vw, 78px); margin:0 0 12px; line-height:.96; }
+    .lede { max-width:920px; color:var(--muted); font-size:21px; line-height:1.55; margin-bottom:24px; }
+    .grid { display:grid; gap:18px; grid-template-columns:repeat(4, minmax(0,1fr)); }
+    .metric, .incident { border:1px solid var(--line); border-radius:22px; background:rgba(9,18,32,.62); padding:20px; }
+    .metric .label, .muted { color:var(--muted); }
+    .metric .label { font-size:13px; margin-bottom:10px; text-transform:uppercase; letter-spacing:.08em; }
+    .metric .value { font-size:30px; font-weight:700; }
+    .danger { color:var(--danger); } .warn { color:var(--warn); } .ok { color:var(--ok); }
+    .layout { display:grid; grid-template-columns:1.2fr .8fr; gap:24px; }
+    .panel { padding:24px; }
+    .section-title { margin:0 0 18px; font-size:24px; }
+    .incident-list, .timeline { display:grid; gap:14px; }
+    .incident-head { display:flex; justify-content:space-between; gap:16px; margin-bottom:8px; align-items:start; }
+    .pill { padding:6px 10px; border-radius:999px; font-size:12px; text-transform:uppercase; letter-spacing:.08em; border:1px solid var(--line); white-space:nowrap; }
+    .event { border-left:2px solid var(--accent); padding-left:14px; }
+    .time { color:var(--accent); font-size:13px; margin-bottom:4px; }
+    @media (max-width:980px) { body { padding:20px; } .grid, .layout { grid-template-columns:1fr; } }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <section class="hero">
+      <div class="eyebrow">Portfolio Project</div>
+      <h1>LLM Incident Review Console</h1>
+      <p class="lede">Incident forensics for AI systems: review prompt injections, hallucinated SQL, unsafe tool calls, and policy failures with timeline evidence, replay previews, and mitigation planning.</p>
+      <div class="grid">
+        <article class="metric"><div class="label">Open incidents</div><div class="value danger">2</div></article>
+        <article class="metric"><div class="label">Critical incidents</div><div class="value warn">1</div></article>
+        <article class="metric"><div class="label">Replay modes</div><div class="value ok">2</div></article>
+        <article class="metric"><div class="label">Mitigation owners</div><div class="value">4</div></article>
+      </div>
+    </section>
+    <section class="layout">
+      <article class="panel">
+        <h2 class="section-title">Active incident queue</h2>
+        <div class="incident-list">
+          <div class="incident">
+            <div class="incident-head">
+              <div><strong>Prompt injection bypassed tool policy during agent escalation</strong><div class="muted">agent-runtime-control-tower · production · gpt-5.4</div></div>
+              <span class="pill danger">critical</span>
+            </div>
+            <div class="muted">External customer text persuaded the model to request privileged export tooling. Gateway blocked execution, preserved evidence, and created a review incident.</div>
+          </div>
+          <div class="incident">
+            <div class="incident-head">
+              <div><strong>RAG analyst drafted ungrounded SQL for finance summary</strong><div class="muted">danex-rag-service · staging · gemini-2.0-flash</div></div>
+              <span class="pill warn">high</span>
+            </div>
+            <div class="muted">Schema guardrails rejected unsupported columns before execution. Review focuses on replay safety and query grounding.</div>
+          </div>
+        </div>
+      </article>
+      <article class="panel">
+        <h2 class="section-title">Review timeline</h2>
+        <div class="timeline">
+          <div class="event"><div class="time">08:10:05Z · ingress</div><div>Untrusted customer note entered the retrieval set.</div></div>
+          <div class="event"><div class="time">08:10:11Z · reasoning</div><div>Model requested privileged export tool with elevated scope.</div></div>
+          <div class="event"><div class="time">08:10:12Z · policy</div><div>Gateway denied execution and opened incident <code>inc_1001</code>.</div></div>
+          <div class="event"><div class="time">08:11:10Z · response</div><div>Fallback answer returned without exposed data.</div></div>
+        </div>
+      </article>
+    </section>
+  </main>
+</body>
+</html>

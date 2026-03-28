@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LLM Incident Review Console Ops Flow</title>
+  <style>
+    html,body{margin:0;min-height:100%;background:radial-gradient(circle at top left,rgba(95,209,255,.12),transparent 28%),linear-gradient(180deg,#081425,#0b1b31);color:#edf4ff;font-family:"Segoe UI",system-ui,sans-serif}
+    body{padding:28px}
+    .wrap{max-width:1280px;margin:0 auto;display:grid;gap:20px;grid-template-columns:1.05fr .95fr}
+    .card{background:rgba(12,26,45,.94);border:1px solid rgba(117,187,255,.17);border-radius:26px;padding:24px}
+    .eyebrow{color:#5fd1ff;text-transform:uppercase;letter-spacing:.14em;font-size:12px}
+    h1{font-size:46px;margin:10px 0 12px}
+    .item{background:#081423;border:1px solid rgba(117,187,255,.17);border-radius:20px;padding:16px;margin-top:14px}
+    .meta{color:#9cb1ca;margin-top:8px}
+    .critical{color:#ff6b7a}.high{color:#ffb75f}.ok{color:#6ee7a3}
+    ul{margin:12px 0 0;padding-left:18px;color:#dce7f7}
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="card">
+      <div class="eyebrow">Incident Queue</div>
+      <h1>What operators review</h1>
+      <div class="item">
+        <strong>inc_1001 · Prompt injection bypassed tool policy during agent escalation</strong>
+        <div class="meta">service: agent-runtime-control-tower · severity: <span class="critical">critical</span> · verdict: blocked_after_evidence_collection</div>
+        <ul>
+          <li>Evidence preserved from untrusted support comment</li>
+          <li>Privileged MCP export request captured before execution</li>
+          <li>Mitigation owners assigned to retrieval and platform teams</li>
+        </ul>
+      </div>
+      <div class="item">
+        <strong>inc_1002 · RAG analyst drafted ungrounded SQL for finance summary</strong>
+        <div class="meta">service: danex-rag-service · severity: <span class="high">high</span> · verdict: needs_schema_guardrails</div>
+        <ul>
+          <li>Schema validator blocked unknown columns</li>
+          <li>Replay mode changed to schema-locked-replay</li>
+          <li>Analyst-facing fallback recommended instead of partial SQL</li>
+        </ul>
+      </div>
+    </section>
+    <section class="card">
+      <div class="eyebrow">Replay Preview</div>
+      <h1>Safe next action</h1>
+      <div class="item">
+        <strong class="ok">schema-locked-replay</strong>
+        <div class="meta">Expected outcome: grounded SQL or fail-closed before execution.</div>
+        <ul>
+          <li>Freeze schema graph and deny unknown columns</li>
+          <li>Compare replay draft against validator output</li>
+          <li>Return explanation instead of speculative SQL</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
