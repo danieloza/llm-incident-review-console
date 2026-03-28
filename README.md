@@ -52,6 +52,23 @@ Open:
 - `inc_1001` prompt injection attempt in `agent-runtime-control-tower`
 - `inc_1002` hallucinated SQL draft in `danex-rag-service`
 
+## Proof Assets
+
+What you can inspect immediately:
+
+- dashboard proof: [`output/playwright/screen-01-dashboard.png`](output/playwright/screen-01-dashboard.png)
+- health proof: [`output/playwright/screen-02-health-proof.png`](output/playwright/screen-02-health-proof.png)
+- operations proof: [`output/playwright/screen-03-ops-proof.png`](output/playwright/screen-03-ops-proof.png)
+- product framing: [`output/playwright/screen-04-product-proof.png`](output/playwright/screen-04-product-proof.png)
+- architecture notes: [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md)
+- case study: [`docs/CASE_STUDY.md`](docs/CASE_STUDY.md)
+
+## What This Actually Proves
+
+- the backend can model post-incident AI forensics, not only request-time inference
+- seeded evidence is grouped into timeline, mitigation, and replay surfaces that a reviewer can inspect quickly
+- the project has a live dashboard, Docker packaging, CI, and screenshot-ready artifacts instead of README-only claims
+
 ## Positioning
 
 This is not another chatbot demo. It is incident forensics for AI systems: the layer between "something went wrong" and "we understand why it went wrong and how to replay safely."
