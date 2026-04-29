@@ -7,3 +7,5 @@ __pycache__/
 data/
 .venv/
 src/*.egg-info/
+output/
+docs/LINKEDIN_POST*.md
